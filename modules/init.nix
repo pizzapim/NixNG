@@ -236,6 +236,11 @@ in
     };
     services = mkOption {
       type = types.attrsOf (types.submodule {
+        imports = [
+          (mkRenamedOptionModule [ "script" ] [ "execStart" ])
+          (mkRenamedOptionModule [ "finish" ] [ "execStop" ])
+          (mkRenamedOptionModule [ "pwd" ] [ "workingDirectory" ])
+        ];
         options = {
           dependencies = mkOption {
             description = "Service dependencies";
@@ -247,13 +252,18 @@ in
 
           shutdownOnExit = mkEnableOption "Whether the init system should enter shutdown when this particular service exits";
 
-          script = mkOption {
-            description = "Service script to start the program.";
-            type = types.path;
-            default = "";
+          execStartPre = mkOption {
+            description = "Service script to start before the program.";
+            type = with types; nullOr path;
+            default = null;
           };
 
-          finish = mkOption {
+          execStart = mkOption {
+            description = "Service script to start the program.";
+            type = types.path;
+          };
+
+          execStop = mkOption {
             description = "Script to run upon service stop.";
             type = with types; nullOr path;
             default = null;
@@ -267,19 +277,35 @@ in
 
           environment = mkOption {
             description = ''
-              The environment variables that will be added to the default ones prior to running <option>script</option>
-              and <option>finish</option>.
+              The environment variables that will be added to the default ones prior to running <option>execStart</option>
+              and <option>execStop</option>.
             '';
             type = with types; attrsOf (oneOf [ str int ]);
             default = { };
           };
 
-          pwd = mkOption {
+          environmentFile = mkOption {
             description = ''
-              Directory in which both <option>script</option> and <option>finish</option> will be ran.
+              The environment file that will be loaded prior to running <option>execStart</option>
+              and <option>execStop</option>.
+            '';
+            type = lib.types.path;
+          };
+
+          workingDirectory = mkOption {
+            description = ''
+              Directory in which both <option>execStart</option> and <option>execStop</option> will be ran.
             '';
             type = types.str;
             default = "/var/empty";
+          };
+
+          tmpfiles = mkOption {
+            description = ''
+              List of nottmpfiles rules, view `lib/generators.nix` for how to use it, or the examples.
+            '';
+            type = types.unspecified;
+            default = [];
           };
         };
       });

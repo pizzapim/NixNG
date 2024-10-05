@@ -7,10 +7,10 @@
 #   file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 { stdenv
-, systemdStandalone
+, systemd
 }:
 stdenv.mkDerivation {
-  inherit (systemdStandalone) pname version;
+  inherit (systemd) pname version;
 
   dontFetch = true;
   dontUnpack = true;
@@ -23,10 +23,10 @@ stdenv.mkDerivation {
   outputs = [ "out" "man" ];
 
   installPhase = ''
-    install ${systemdStandalone}/bin/systemd-tmpfiles.standalone -Dt $out/bin
-    ln -s ${systemdStandalone}/bin/systemd-tmpfiles.standalone $out/bin/tmpfiles.d
+    install ${systemd}/bin/systemd-tmpfiles -Dt $out/bin
+    ln -s ${systemd}/bin/systemd-tmpfiles $out/bin/tmpfiles.d
 
-    install ${systemdStandalone.man}/share/man/man8/systemd-tmpfiles.8.gz -Dt $man/share/man/man8
-    install ${systemdStandalone.man}/share/man/man5/tmpfiles.d.5.gz -Dt $man/share/man/man5
+    install ${systemd.man}/share/man/man8/systemd-tmpfiles.8.gz -Dt $man/share/man/man8
+    install ${systemd.man}/share/man/man5/tmpfiles.d.5.gz -Dt $man/share/man/man5
   '';
 }
