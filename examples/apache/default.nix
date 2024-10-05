@@ -14,9 +14,8 @@ nglib.makeSystem {
   config = ({ pkgs, config, ... }:
     {
       config = {
-        dumb-init = {
+        dinit = {
           enable = true;
-          type.services = { };
         };
         init.services.apache2 = {
           shutdownOnExit = true;
