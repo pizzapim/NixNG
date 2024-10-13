@@ -279,6 +279,7 @@ in
             description = ''
               The environment variables that will be added to the default ones prior to running <option>execStart</option>
               and <option>execStop</option>.
+              This option is ignored if <option>environmentFile</option> is specified.
             '';
             type = with types; attrsOf (oneOf [ str int ]);
             default = { };
@@ -289,7 +290,8 @@ in
               The environment file that will be loaded prior to running <option>execStart</option>
               and <option>execStop</option>.
             '';
-            type = lib.types.path;
+            type = with types; nullOr path;
+            default = null;
           };
 
           workingDirectory = mkOption {

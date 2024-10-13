@@ -66,10 +66,10 @@ writeShellScript "${n}-finish" ''
   ) s.ensureSomething.create)}
 
   (
-    cd ${s.pwd}
+    cd ${s.workingDirectory}
     ${optionalString (s.environment != {}) "export ${concatStringsSep " " (mapAttrsToList (n: v: "${n}=${v}") s.environment)}"}
-    ${optionalString (s.finish != null && !s.shutdownOnExit) "exec ${s.finish}"}
-    ${optionalString (s.finish != null && s.shutdownOnExit) "${s.finish}"}
+    ${optionalString (s.execStop != null && !s.shutdownOnExit) "exec ${s.execStop}"}
+    ${optionalString (s.execStop != null && s.shutdownOnExit) "${s.execStop}"}
   )
 
   ${optionalString (s.shutdownOnExit) ("exec ${cfgInit.shutdown}")}
