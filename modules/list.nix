@@ -51,4 +51,5 @@
   ./services/attic.nix
   ./services/ntfy-sh.nix
   ./services/radicale.nix
+  ./services/jellyseerr.nix
 ]
