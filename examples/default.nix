@@ -33,6 +33,7 @@ let
     "ntfy-sh" = ./ntfy-sh;
     "radicale" = ./radicale;
     "jellyseerr" = ./jellyseerr;
+    "radarr" = ./radarr;
   };
 in
 nixpkgs.lib.mapAttrs (_: v: import v { inherit nixpkgs nglib nixng; }) examples

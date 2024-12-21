@@ -52,4 +52,5 @@
   ./services/ntfy-sh.nix
   ./services/radicale.nix
   ./services/jellyseerr.nix
+  ./services/radarr.nix
 ]
