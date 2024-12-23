@@ -55,4 +55,5 @@
   ./services/radarr.nix
   ./services/sonarr.nix
   ./services/bazarr.nix
+  ./services/prowlarr.nix
 ]
