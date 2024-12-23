@@ -34,6 +34,7 @@ let
     "radicale" = ./radicale;
     "jellyseerr" = ./jellyseerr;
     "radarr" = ./radarr;
+    "sonarr" = ./sonarr;
   };
 in
 nixpkgs.lib.mapAttrs (_: v: import v { inherit nixpkgs nglib nixng; }) examples
