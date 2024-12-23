@@ -54,4 +54,5 @@
   ./services/jellyseerr.nix
   ./services/radarr.nix
   ./services/sonarr.nix
+  ./services/bazarr.nix
 ]
