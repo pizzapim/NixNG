@@ -31,6 +31,7 @@ let
     "dnsmasq" = ./dnsmasq;
     "attic" = ./attic;
     "ntfy-sh" = ./ntfy-sh;
+    "prowlarr" = ./prowlarr;
   };
 in
 nixpkgs.lib.mapAttrs (_: v: import v { inherit nixpkgs nglib nixng; }) examples
