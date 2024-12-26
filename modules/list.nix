@@ -56,4 +56,5 @@
   ./services/sonarr.nix
   ./services/bazarr.nix
   ./services/prowlarr.nix
+  ./services/generic-device-plugin.nix
 ]

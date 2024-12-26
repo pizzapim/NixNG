@@ -43,7 +43,11 @@
       dnsmasq = 405;
       attic = 406;
       ntfy-sh = 407;
+<<<<<<< HEAD
       radicale = 408;
+=======
+      generic-device-plugin = 411;
+>>>>>>> 2a2269f (Add `generic-device-plugin` module)
       vmail = 5000;
       nobody = 65534;
     };
@@ -72,6 +76,7 @@
       attic = 406;
       ntfy-sh = 407;
       radicale = 408;
+      generic-device-plugin = 411;
       vmail = 5000;
       nogroup = 65534;
     };
