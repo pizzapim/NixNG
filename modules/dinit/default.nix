@@ -69,14 +69,14 @@ let
     ${lib.pipe config.init.services [
       (lib.mapAttrsToList (name: service: service // { inherit name; }))
       (lib.filter (service: service.enabled && service.shutdownOnExit))
-      (lib.map (service: "depends-on: " + service.name))
+      (builtins.map (service: "depends-on: " + service.name))
       (lib.concatStringsSep "\n")
     ]}
 
     ${lib.pipe config.init.services [
       (lib.mapAttrsToList (name: service: service // { inherit name; }))
       (lib.filter (service: service.enabled && !service.shutdownOnExit))
-      (lib.map (service: "waits-for: " + service.name))
+      (builtins.map (service: "waits-for: " + service.name))
       (lib.concatStringsSep "\n")
     ]}
   '';
